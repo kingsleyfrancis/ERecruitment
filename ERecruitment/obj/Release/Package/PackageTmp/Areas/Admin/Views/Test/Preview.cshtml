@@ -1,0 +1,110 @@
+﻿@using System
+@using System.Linq
+@using ERecruitment.Models.Enums
+@model ERecruitment.Models.Tests.Test
+@{
+    ViewBag.Title = Model.TestTitle;
+    var test = Model;
+    var questions = test.Questions;
+
+    var questionCount = questions.Count;
+    var testCount = test.QuestionsCount;
+}
+
+<section class="content">
+    <div class="box">
+        <header>
+            <h2>@test.TestTitle</h2>
+        </header>
+        <ul class="list-block">
+            <li>
+                <strong>Total score: </strong>
+                <strong>@test.TotalScore</strong>
+            </li>
+            <li>
+                <strong>Question count: </strong>
+                <strong>@test.QuestionsCount</strong>
+
+            </li>
+            <li>
+                <strong>Added on: </strong>
+                <strong>@test.AddedOn.ToShortDateString()</strong> 
+            </li>
+        </ul>
+       
+        <footer class="clearfix">
+          @if (!test.IsReady)
+          {
+              <a href="@Url.Action("activate", "test", new {id = test.Id})"
+                 class="btn btn-primary pull-right">Activate</a>
+          }
+          else
+          {
+            <a href="@Url.Action("deactivate", "test", new {id = test.Id})"
+               class="btn btn-danger pull-right">Deactivate</a>
+          }
+        </footer>
+    </div>
+    @if (questions != null && questions.Any())
+    {
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Type</th>
+                    <th>Score</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var question in questions)
+                {
+                    <tr>
+                        <td>
+                            <strong>@question.QuestionBody</strong>
+                        </td>
+                        <td>
+                            @Enum.GetName(typeof(QuestionType),
+                                question.QuestionType)
+                        </td>
+                        <td>
+                            <span>@question.Score</span>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("edit", "question", 
+                                         new{id = question.Id})" 
+                               class="btn btn-default btn-sm">Edit</a> | 
+                            <a href="@Url.Action("delete", "question", 
+                                         new{id = question.Id})" 
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            @if (testCount > questionCount)
+            {
+                <tfoot>
+                    <tr class="clearfix">
+                        <td colspan="3">
+                            <a href="@Url.Action("add", "question", new{testId = test.Id})"
+                               class="btn btn-primary pull-right">Add Question</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            }
+        </table>
+
+    }
+    else
+    {
+        <div class="box alert alert-info">
+            <p>
+                <em>There is currently no questions added yet to this test.</em> 
+            </p>
+        </div>
+    }
+    
+</section>
+

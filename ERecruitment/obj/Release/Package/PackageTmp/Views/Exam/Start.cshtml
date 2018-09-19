@@ -1,0 +1,144 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using ERecruitment.Models.Enums
+@using ERecruitment.Models.Questions
+@using ERecruitment.Models.Tests
+@using ERecruitment.Services.Answers
+@model ERecruitment.Models.Exams.Exam
+@{
+    Test test = ViewBag.Test;
+    ViewBag.Title = string.Format("Start {0}", test.TestTitle);
+
+    ICollection<Question> questions = test.Questions;
+
+    IDependencyResolver resolver = DependencyResolver.Current;
+    var answerService = resolver.GetService<IAnswerService>();
+}
+
+<section class="content">
+
+    <div class="box">
+        <header>
+            <h2>@ViewBag.Title</h2>
+        </header>
+        <ul class="list-block">
+            <li>
+                <strong>Total score: </strong>
+                <strong>@test.TotalScore</strong>
+            </li>
+            <li>
+                <strong>Question count: </strong>
+                <strong>@test.QuestionsCount</strong>
+
+            </li>
+            <li>
+                <strong>Added on: </strong>
+                <strong>@test.AddedOn.ToShortDateString()</strong>
+            </li>
+        </ul>
+    </div>
+
+    <div class="box">
+        @if (questions != null && questions.Any())
+        {
+            int i = 0;
+            using (Html.BeginForm("Submit", "Exam", FormMethod.Post))
+            {
+               <input type="hidden" name="TestId" value="@test.Id" />
+                @Html.AntiForgeryToken()
+
+                <ol class="form-body">
+                    @foreach (Question ques in questions)
+                    {
+                        var questionName = string.Format("Questions[{0}].QuestionId", i);
+                        var answerName = string.Format("Questions[{0}].Answer", i);
+                        
+                        <li>
+                            @switch (ques.QuestionType)
+                            {
+                                case QuestionType.Objective:
+                                {
+                                    ICollection<ValidAnswer> answers = ques.Answers;
+                                    if (!answers.Any())
+                                    {
+                                        answers = answerService
+                                            .GetAnswersForQuestion(ques.Id);
+                                    }
+                                    
+                                    <div class="question">
+                                        <p class="ques">
+                                            @ques.QuestionBody
+                                        </p>
+                                        <input type="hidden" name="@questionName"
+                                               value="@ques.Id" />
+                                        <div>
+                                            <ul class="list-block">
+                                                @foreach (ValidAnswer ans in answers)
+                                                {
+                                                    <li>
+                                                        <label>
+                                                            <input type="radio" name="@answerName" 
+                                                                   value="@ans.Answer"/> @ans.Answer
+                                                        </label>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    break;
+                                }
+                                case QuestionType.Subjective:
+                                {
+                                    <div class="question">
+                                        <p class="ques">
+                                            @ques.QuestionBody
+                                        </p>
+                                        <input type="hidden" name="@questionName"
+                                               value="@ques.Id" />
+                                        <div>
+                                            <ul class="list-block">
+                                                <li>
+                                                    <input type="text" name="@answerName"
+                                                           value="" class="form-control" /> 
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    break;
+                                }
+                                case QuestionType.Theory:
+                                {
+                                    <div class="question">
+                                        <p class="ques">
+                                            @ques.QuestionBody
+                                        </p>
+                                        <input type="hidden" name="@questionName"
+                                               value="@ques.Id" />
+                                        <div>
+                                            <ul class="list-block">
+                                                <li>
+                                                    <textarea name="@answerName" 
+                                                              class="form-control"></textarea>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+    
+                                    break;
+                                }
+                            }
+                        </li>
+
+                        //increment i by 1
+                        i += 1;
+                    }
+                </ol>
+                <footer>
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </footer>
+            
+            }
+        }
+       
+    </div>
+</section>

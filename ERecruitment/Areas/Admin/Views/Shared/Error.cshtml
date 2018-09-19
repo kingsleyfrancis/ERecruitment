@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Error!";
+    string errorMsg = ViewBag.ErrorMessage ?? "An error occured while" +
+                      " processing the current request. Try again later.";
+}
+
+<section class="content">
+    <div class="box alert alert-danger">
+        <header>
+            <h2>Error</h2>
+        </header>
+        
+        <p>
+            <em>
+                @errorMsg
+            </em>
+        </p>
+    </div>
+</section>
+

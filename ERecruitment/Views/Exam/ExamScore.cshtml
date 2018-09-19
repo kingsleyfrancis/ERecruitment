@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Congratulations, you have successfully completed the examination.";
+    float testScore = ViewBag.TestScore;
+    float totalScore = ViewBag.TotalScore;
+}
+
+<section class="content">
+    <header>
+        <h2>@ViewBag.Title</h2>
+    </header>
+    
+    <div class="box alert alert-success">
+        Congratulations, the test was successfully completed and score appropriately.
+        <ul class="list-block">
+            <li>
+                <strong>Total score: </strong> <strong>@totalScore</strong>
+            </li>
+            <li>
+                <strong>Your score: </strong> <strong>@testScore</strong>
+            </li>
+        </ul>
+    </div>
+</section>
+

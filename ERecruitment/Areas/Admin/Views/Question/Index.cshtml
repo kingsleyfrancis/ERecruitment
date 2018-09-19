@@ -1,0 +1,49 @@
+﻿@using System.Linq
+@model ERecruitment.Models.Questions.Question
+@{
+    var question = Model;
+    var test = question.Test;
+    var answer = question.Answers.FirstOrDefault(a => a.IsValidAnswer);
+    
+    ViewBag.Title = "Question";
+    
+}
+
+<section class="content">
+    <header>
+        <h2>@ViewBag.Title</h2>
+    </header>
+    <div class="box">
+        <header class="answer-header">
+            <h3>Question: </h3>
+            <p>@question.QuestionBody</p>
+        </header>
+        <ul class="list-block">
+            <li>
+                <strong>Question score: </strong>
+                <strong>@question.Score</strong>
+            </li>
+            <li>
+                <strong>Added on: </strong> 
+                <strong>@question.AddedOn.ToShortDateString()</strong>
+            </li>
+            @if (test != null)
+            {
+                <li>
+                    <strong>Test title: </strong>
+                    <strong>@test.TestTitle</strong>
+                </li>
+            }
+            
+            @if (answer != null)
+            {
+                <li class="answer-header">
+                    <h4>Expected answer:</h4>
+                    <p>@answer.Answer</p>
+                </li>
+            }
+
+        </ul>
+    </div>
+</section>
+

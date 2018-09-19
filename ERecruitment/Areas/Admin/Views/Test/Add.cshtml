@@ -1,0 +1,50 @@
+﻿@using ERecruitment.Models.Enums
+@using NodaTime
+@model ERecruitment.Models.Tests.TestModel
+@{
+    var mode = ViewBag.FormMode ?? FormMode.Create;
+    var action = mode == FormMode.Edit ? "Edit" : "Add";
+    ViewBag.Title =  action + " a test";
+}
+
+<section class="content">
+    @using (Html.BeginForm("add", "test", new {mode}, FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        @Html.AntiForgeryToken()
+        
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                <div class="box">
+                    <header>
+                        <h2>@ViewBag.Title</h2>
+                    </header>
+
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.TestTitle, new { @class = "control-label" })
+                        @Html.TextBoxFor(a => a.TestTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.TestTitle)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.QuestionsCount, new { @class = "control-label" })
+                        @Html.TextBoxFor(a => a.QuestionsCount, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.QuestionsCount)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(a => a.TotalScore, new { @class = "control-label" })
+                        @Html.TextBoxFor(a => a.TotalScore, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.TotalScore)
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    }
+</section>
+

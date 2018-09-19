@@ -1,0 +1,74 @@
+﻿@model ERecruitment.Models.Answers.MultipleChoice
+@{
+    ViewBag.Title = "Multiple choice answers";
+    var question = ViewBag.Question;
+    var questionId = ViewBag.QuestionId;
+
+    const int answerCount = 5;
+}
+
+<section class="content">
+    <header>
+        <h2>@ViewBag.Title</h2>
+    </header>
+    
+    <div class="row">
+        <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <div class="box">
+                <header class="answer-header">
+                    <h3>Question: </h3>
+                    <p>@question</p>
+                </header>
+                @using (Html.BeginForm("multiplechoice", "answers", new { quesid = questionId }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "An error occured, correct and try again.",
+                        new { @class = "text-danger" })
+
+
+                    <table class="table table-condensed table-striped table-bordered table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Answer</th>
+                                <th>Is correct</th>
+                            </tr>
+                        </thead>
+                        @for (int i = 0; i < answerCount; i++)
+                        {
+                            const char ch = 'A';
+                            var sn = (char)(ch + i);
+
+                            var name = string.Format("Answers[{0}].AnswerCharacter", i);
+                            var chId = string.Format("Answers_{0}__AnswerCharacter", i);
+
+                            <tr>
+                                <td>
+                                    <strong>@sn</strong>
+                                </td>
+                                <td>
+                                   @Html.TextBoxFor(a => a.Answers[i].Answer, new{@class = "form-control"})
+                                    <input type="hidden" name="@name" value="@sn" id="@chId"/>
+                                </td>
+                                <td>
+                                    @if (sn == ch)
+                                    {
+                                        @Html.RadioButtonFor(a => a.ValidAnswer, sn.ToString(), new {@checked = true})
+                                    }
+                                    else
+                                    {
+                                        @Html.RadioButtonFor(a => a.ValidAnswer, sn.ToString())
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    <footer>
+                        <input type="submit" value="Next" class="btn btn-primary" />
+                    </footer>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

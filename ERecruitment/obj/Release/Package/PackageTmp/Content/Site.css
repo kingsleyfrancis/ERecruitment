@@ -1,0 +1,316 @@
+/*Reset Css Starts here */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strong, sub, sup, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font: inherit;
+  font-size: 100%; }
+
+html {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none;
+  margin: 1em 0;
+  margin-left: 40px;
+  padding-left: 0; }
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse; }
+
+caption, th, td {
+  vertical-align: middle;
+  text-align: left;
+  font-weight: normal; }
+
+q, blockquote {
+  quotes: none; }
+
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+a img {
+  border: none; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block; }
+
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-weight: normal;
+  font-style: normal; }
+
+ul {
+  list-style-type: disc;
+  margin: 1em 0;
+  margin-left: 2em;
+  padding-left: 0; }
+
+ol {
+  list-style-type: decimal;
+  margin: 1em 0;
+  margin-left: 2em;
+  padding-left: 0; }
+
+caption, th {
+  text-align: left; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%; }
+
+fieldset, img {
+  border: 0; }
+
+/* BLOCK ELEMENTS */
+html, div, map, dt, form {
+  display: block; }
+
+body {
+  display: block;
+  margin: 0.4em;
+  font-size: medium;
+  font-family: serif; }
+
+p, dl {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+dd {
+  display: block;
+  margin-left: 40px; }
+
+address {
+  display: block;
+  font-style: italic; }
+
+blockquote {
+  display: block;
+  margin: 1em 40px; }
+
+h1 {
+  display: block;
+  margin: 0.67em 0;
+  font-weight: bold;
+  font-size: 2em; }
+
+h2 {
+  display: block;
+  margin: 0.83em 0;
+  font-weight: bold;
+  font-size: 1.5em; }
+
+h3 {
+  display: block;
+  margin: 1em 0;
+  font-weight: bold;
+  font-size: 1.125em; }
+
+h4 {
+  display: block;
+  margin: 1.33em 0;
+  font-weight: bold;
+  font-size: 1em; }
+
+h5 {
+  display: block;
+  margin: 1.67em 0;
+  font-weight: bold;
+  font-size: 0.75em; }
+
+h6 {
+  display: block;
+  margin: 2.33em 0;
+  font-weight: bold;
+  font-size: 0.5625em; }
+
+pre {
+  display: block;
+  margin: 1em 0;
+  white-space: pre;
+  font-family: monospace; }
+
+hr {
+  display: block;
+  margin: 0.5em auto 0.5em auto;
+  height: 2px;
+  border: 1px; }
+
+/* TABLE ELEMENTS */
+caption {
+  text-align: center; }
+
+td {
+  line-height: 1.4;
+  text-align: left;
+  display: table-cell; }
+
+th {
+  padding: 0.2em;
+  font-size: 1.1em;
+  font-weight: bold; }
+
+tbody, thead, tfoot {
+  vertical-align: middle; }
+
+/* INLINE ELEMENTS */
+strong {
+  font-weight: bold; }
+
+cite, em, var, dfn {
+  font-style: italic; }
+
+code, kbd, samp {
+  font-family: monospace; }
+
+ins {
+  text-decoration: underline; }
+
+del {
+  text-decoration: line-through; }
+
+sub {
+  vertical-align: -0.25em;
+  font-size: smaller;
+  line-height: normal; }
+
+sup {
+  vertical-align: 0.5em;
+  font-size: smaller;
+  line-height: normal; }
+
+abbr[title] {
+  border-bottom: dotted 1px; }
+
+small {
+  font-size: 12px !important; }
+
+/* remove top & bottom margins for nested lists */
+ul ul, ul ol, ul dl, ol ul, ol ol, ol dl, dl ul, dl ol, dl dl {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+/* use circle when ul nested 2 deep */
+ol ul, ul ul {
+  list-style-type: circle; }
+
+/* use square when ul nested 3 deep */
+ol ol ul, ol ul ul, ul ol ul, ul ul ul {
+  list-style-type: square; }
+
+b {
+  font-weight: bold; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  height: 100%; }
+
+body {
+  font-size: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  line-height: 1.557;
+  background: #eee;
+  color: #101010;
+  margin: 0;
+  padding: 0; }
+
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.dl-horizontal dt {
+  white-space: normal; }
+
+.content {
+  padding: 0;
+  margin: 3.5em 0 0 0;
+  position: relative; }
+  .content header {
+    margin: 0.5em;
+    text-align: center; }
+    .content header h1, .content header h2, .content header h3, .content header h4, .content header h5, .content header h6 {
+      margin: 0.6em auto; }
+
+.box {
+  width: 100%;
+  padding: 0.7em;
+  margin: 0.8em 0;
+  background: #fff;
+  border: 2px solid #c8c8c8; }
+  .box header {
+    border-bottom: 2px solid #e1e1e1;
+    margin: 0 0 0.5rem 0; }
+    .box header h1, .box header h2, .box header h3, .box header h4, .box header h5, .box header h6 {
+      margin: 0.5em auto; }
+  .box .form-group {
+    margin: 0 0.8em 0.8em 0.8em; }
+  .box footer {
+    border-top: 2px solid #e1e1e1;
+    margin-top: 0.5rem;
+    padding: 0.5em; }
+
+.jumbtron {
+  margin: 1em; }
+
+.page {
+  min-height: 100%;
+  margin-bottom: -79px; }
+
+.page:after {
+  content: " ";
+  display: block;
+  height: 79px; }
+
+.footer-content {
+  background-color: #101010;
+  margin: 0.8em 0 0 0;
+  padding: 0.7em;
+  color: #fff;
+  height: 79px; }
+  .footer-content p {
+    text-align: center; }
+
+.list-block {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+  .list-block li {
+    margin-bottom: 0.5em; }
+
+.inline-block {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .inline-block li {
+    display: inline-block;
+    margin-right: 0.7em; }
+    .inline-block li:last-child {
+      margin-right: 0; }
+
+.answer-header {
+  text-align: left !important; }
+  .answer-header h3 {
+    margin: 0 auto;
+    text-align: left; }
+  .answer-header p {
+    margin: 0.4em 0;
+    text-align: left; }
+
+/*# sourceMappingURL=Site.css.map */

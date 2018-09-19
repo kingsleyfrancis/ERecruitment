@@ -1,0 +1,75 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@model List<ERecruitment.Models.Tests.Test>
+@{
+    ViewBag.Title = "Recrritment tests";
+    var tests = Model;
+}
+
+<section class="content">
+    <header>
+        <h2>Tests</h2>
+    </header>
+    @if (tests != null && tests.Any())
+    {
+        <div class="box">
+            <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Question count</th>
+                        <th>Total score</th>
+                        <th>Added on</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var test in tests)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("preview", "test",
+                                             new {id = test.Id})">
+                                    @test.TestTitle
+                                </a>
+                            </td>
+                            <td>
+                                <span>@test.QuestionsCount</span>
+
+                            </td>
+                            <td>
+                                <span>@test.TotalScore</span>
+                            </td>
+                            <td>
+                                <span>@test.AddedOn.ToShortDateString()</span>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("edit", "test",
+                                             new {id = test.Id})"
+                                   class="btn btn-default btn-sm">Edit</a> |
+                                <a href="@Url.Action("delete", "test",
+                                             new {id = test.Id})"
+                                   class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <footer class="clearfix">
+                <a href="@Url.Action("add", "test")" class="btn btn-primary pull-right">Add more test</a>
+            </footer>
+        </div>
+    }
+    else
+    {
+        <div class="box alert alert-info">
+            <p>
+                <em>
+                    There is no test avaliable.
+                </em>
+            </p>
+        </div>
+        
+    }
+</section>
+

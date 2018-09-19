@@ -1,0 +1,68 @@
+﻿@using System.Collections.Generic;
+@using System.Linq
+@using ERecruitment.Models.Questions;
+@model List<Question>
+@{
+    ViewBag.Title = "Questions";
+    var questions = Model;
+}
+<section class="content">
+    <header>
+        <h2>@ViewBag.Title</h2>
+    </header>
+    @if (questions != null &&
+         questions.Any())
+    {
+        <table class="table table-bordered table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Score</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var que in questions)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("index", "question",
+                                         new {id = que.Id})">
+                                <strong>
+                                    @que.QuestionBody
+                                </strong>
+                            </a>
+                        </td>
+                        <td>
+                            <span>@que.Score</span>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("edit", "question",
+                                         new {id = que.Id})" 
+                               class="btn btn-default btn-sm">
+                                Edit
+                            </a>
+                            |
+                            <a href="@Url.Action("delete", "question",
+                                         new {id = que.Id})"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="box alert alert-info">
+            <p>
+                <em>No question has been currently added to the system.</em>
+            </p>
+        </div>
+    }
+</section>
+
+
+

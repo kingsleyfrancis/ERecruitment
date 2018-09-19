@@ -1,0 +1,134 @@
+﻿@import "partials/_reset.scss";
+@import "partials/_variables.scss";
+
+html, body{
+    height: 100%;
+}
+
+body {
+   font-size: 16px;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   line-height: 1.557;
+   background: $light-gray;
+   color: $dark;
+   margin: 0;
+   padding: 0;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.content{
+    padding: 0;
+    margin: 3.5em 0 0 0;
+    position: relative;
+
+    header{
+        margin: 0.5em;
+        text-align: center;
+
+        h1, h2, h3, h4, h5, h6{
+            margin: 0.6em auto;
+        }
+    }
+
+}
+
+.box{
+    width: 100%;
+    padding: 0.7em;
+    margin: 0.8em 0;
+    background: $white;
+    border: 2px solid darken($light-gray, 15%);
+
+    header{
+        border-bottom: 2px solid darken($light-gray, 5%);
+        margin: 0 0 0.5rem 0;
+
+        h1, h2, h3, h4, h5, h6{
+            margin: 0.5em auto;
+        }
+    }
+
+    .form-group{
+        margin: 0 0.8em 0.8em 0.8em;
+    }
+
+    footer{
+        border-top: 2px solid darken($light-gray, 5%);
+        margin-top: 0.5rem;
+        padding: 0.5em;
+    }
+}
+
+.jumbtron{
+    margin: 1em;
+}
+
+.page{
+    min-height: 100%;
+    margin-bottom: -79px;
+}
+
+.page:after{
+    content: " ";
+    display: block;
+    height: 79px;
+}
+
+.footer-content{
+    background-color: $dark;
+    margin: 0.8em 0 0 0;
+    padding: 0.7em;
+    color: $white;
+    height: 79px;
+
+    p{
+        text-align: center;
+    }
+}
+
+.list-block{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li{
+        margin-bottom: 0.5em;
+    }
+}
+
+.inline-block{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li{
+        display: inline-block;
+        margin-right: 0.7em;
+
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+
+.answer-header{
+    text-align: left !important;
+
+    h3{
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    p{
+        margin: 0.4em 0;
+        text-align: left;
+    }
+}

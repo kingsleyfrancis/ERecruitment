@@ -1,0 +1,64 @@
+﻿@using System
+@using System.Linq
+@using ERecruitment.Models.Enums
+@model System.Collections.Generic.List<ERecruitment.Models.Questions.Question>
+@{
+    ViewBag.Title = "List of Questions.";
+    var questions = Model;
+}
+
+<section class="content">
+    <header>
+        <h2>@ViewBag.Title</h2>
+    </header>
+    @if (questions != null && questions.Any())
+    {
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Type</th>
+                    <th>Score</th>
+                    <th>Added on</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ques in questions)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("index", "Test", new {id = ques.Id})">
+                                @ques.QuestionBody
+                            </a>
+                        </td>
+                        <td>
+                            <strong>
+                                @Enum.GetName(typeof (QuestionType), ques.QuestionType)
+                            </strong>
+                        </td>
+                        <td>
+                            <strong>@ques.Score</strong>
+                        </td>
+                        <td>
+                            <strong>
+                                @ques.AddedOn.ToShortDateString()
+                            </strong>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("delete", "test", new {id = ques.Id})">Delete</a> |
+                            <a href="@Url.Action("edit", "test", new {id = ques.Id})"></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="box alert alert-info">
+            There is currently no question to show.
+        </div>
+    }
+</section>
+

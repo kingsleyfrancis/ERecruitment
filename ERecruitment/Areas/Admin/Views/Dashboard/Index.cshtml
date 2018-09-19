@@ -1,0 +1,58 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using ERecruitment.Models.Tests
+
+@{
+    ViewBag.Title = "Welcome admin";
+    List<Test> tests = ViewBag.Tests;
+}
+
+<section class="content">
+    <header>
+        <h2>@ViewBag.Title</h2>
+    </header>
+    <div class="box">
+        <ul class="inline-block">
+            <li>
+                <a href="@Url.Action("add", "test")" class="btn btn-primary">Create a new test</a>
+            </li>
+        </ul>
+    </div>
+    <div class="box">
+        <header>
+            <h3>Recent tests</h3>
+        </header>
+        @if (tests != null && tests.Any())
+        {
+            <table class="table table-striped table-responsive">
+                @foreach (var test in tests)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("preview", "test", new{id = test.Id})">
+                                @test.TestTitle
+                            </a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("delete", "test", new{id = test.Id})"
+                               class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                        
+                    </tr>
+                }
+            </table>
+
+        }
+        else
+        {
+            <p>
+                <em>
+                    There is no test avaliable in the system.
+                </em>
+            </p>
+    
+        }
+    </div>
+</section>
+
+

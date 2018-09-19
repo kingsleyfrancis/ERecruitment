@@ -1,0 +1,53 @@
+﻿@using System.Linq
+@model System.Collections.Generic.List<ERecruitment.Models.Tests.Test>
+@{
+    ViewBag.Title = "Dashboard";
+    var tests = Model;
+
+    string clientName = ViewBag.ClientName;
+}
+<section class="content">
+    <header>
+        <h2>Welcome @clientName</h2>
+    </header>
+    <div class="box">
+        <header>
+            <h3>Take Test</h3>
+        </header>
+        @if (tests != null && tests.Any())
+        {
+            <ul class="list-block">
+                @foreach (var test in tests)
+                {
+                    <li>
+                        <div>
+                            <header class="answer-header">
+                                <h4>
+                                    <a href="@Url.Action("index", "Exam",
+                                                 new{id = test.Id})">@test.TestTitle</a>
+                                            </h4>
+                            </header>
+                            <div class="clearfix">
+                                <a href="@Url.Action("start", "exam", 
+                                new{id = test.Id})" class="btn btn-primary pull-right">
+                                    Start
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>
+                <em>
+                    There is currently no exam avaliable to take, try again later.
+                </em>
+            </p>
+            
+        }
+    </div>
+</section>
+
+
